@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+#Archivos para la IA
+FRONTEND-component-spec.md
+FRONTEND-plan.md
+MOCKUPS-burger-house.md

@@ -1,3 +1,7 @@
+import React from 'react';
+import { AppRouter } from './router/AppRouter';
+
 export function App() {
-  return <h1>Aplicación Web SPA</h1>;
+  return <AppRouter />;
 }
+
