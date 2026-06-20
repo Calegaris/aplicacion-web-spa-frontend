@@ -5,6 +5,8 @@ import { LoginPage } from '../pages/LoginPage';
 import { RegisterPage } from '../pages/RegisterPage';
 import { CartPage } from '../pages/CartPage';
 import { CheckoutPage } from '../pages/CheckoutPage';
+import { ConfirmOrderPage } from '../pages/ConfirmOrderPage';
+import { SuccessPage } from '../pages/SuccessPage';
 import { OrdersPage } from '../pages/OrdersPage';
 import { AdminDashboard } from '../pages/AdminDashboard';
 import { ProtectedRoute } from '../components/ProtectedRoute';
@@ -27,6 +29,23 @@ export const AppRouter: React.FC = () => {
               </ProtectedRoute>
             }
           />
+          <Route
+            path="/checkout/confirm"
+            element={
+              <ProtectedRoute requiredRole="user">
+                <ConfirmOrderPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/checkout/success"
+            element={
+              <ProtectedRoute requiredRole="user">
+                <SuccessPage />
+              </ProtectedRoute>
+            }
+          />
+
           <Route
             path="/orders"
             element={

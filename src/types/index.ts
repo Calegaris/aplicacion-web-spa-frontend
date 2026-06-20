@@ -46,3 +46,13 @@ export interface Order {
   updatedAt: string;
   items: OrderItem[];
 }
+
+export interface CheckoutData {
+  name: string;
+  email: string;
+  phone: string;
+  deliveryType: 'delivery' | 'pickup';
+  address?: string;
+  paymentMethod: 'cash' | 'transfer';
+}
+
