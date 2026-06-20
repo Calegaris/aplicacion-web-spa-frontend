@@ -8,36 +8,40 @@ import { CheckoutPage } from '../pages/CheckoutPage';
 import { OrdersPage } from '../pages/OrdersPage';
 import { AdminDashboard } from '../pages/AdminDashboard';
 import { ProtectedRoute } from '../components/ProtectedRoute';
+import { CustomerLayout } from '../layouts/CustomerLayout';
 
 export const AppRouter: React.FC = () => {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Rutas Públicas */}
-        <Route path="/" element={<HomePage />} />
+        {/* Rutas de Cliente con Layout de Navegación y Footer */}
+        <Route element={<CustomerLayout />}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/cart" element={<CartPage />} />
+          
+          <Route
+            path="/checkout"
+            element={
+              <ProtectedRoute requiredRole="user">
+                <CheckoutPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/orders"
+            element={
+              <ProtectedRoute requiredRole="user">
+                <OrdersPage />
+              </ProtectedRoute>
+            }
+          />
+        </Route>
+
+        {/* Rutas de Autenticación independientes */}
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route path="/cart" element={<CartPage />} />
 
-        {/* Rutas Protegidas para Clientes (user) */}
-        <Route
-          path="/checkout"
-          element={
-            <ProtectedRoute requiredRole="user">
-              <CheckoutPage />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/orders"
-          element={
-            <ProtectedRoute requiredRole="user">
-              <OrdersPage />
-            </ProtectedRoute>
-          }
-        />
-
-        {/* Rutas Protegidas para Administradores (admin) */}
+        {/* Rutas de Administración */}
         <Route
           path="/admin"
           element={
@@ -53,3 +57,4 @@ export const AppRouter: React.FC = () => {
     </BrowserRouter>
   );
 };
+
