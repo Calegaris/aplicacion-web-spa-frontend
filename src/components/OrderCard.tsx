@@ -22,7 +22,7 @@ export const OrderCard: React.FC<OrderCardProps> = ({ order, onClick }) => {
     style: 'currency',
     currency: 'ARS',
     minimumFractionDigits: 0,
-  }).format(order.total || order.items.reduce((acc, item) => acc + Number(item.unitPrice) * item.quantity, 0));
+  }).format(order.items.reduce((acc, item) => acc + Number(item.unitPrice) * item.quantity, 0));
 
   return (
     <div

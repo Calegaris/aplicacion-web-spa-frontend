@@ -1,5 +1,4 @@
 import React from 'react';
-import { OrderStatusBadge } from './OrderStatusBadge';
 import type { Order } from '../types';
 
 interface OrderDetailProps {
@@ -77,7 +76,6 @@ export const OrderDetail: React.FC<OrderDetailProps> = ({ order }) => {
           {STEPS.map((step, idx) => {
             const isCompleted = idx < currentStep;
             const isActive = idx === currentStep;
-            const isFuture = idx > currentStep;
 
             let circleClass = '';
             if (isCompleted) {

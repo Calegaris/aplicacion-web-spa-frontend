@@ -10,9 +10,10 @@ import { SuccessPage } from '../pages/SuccessPage';
 import { OrdersPage } from '../pages/OrdersPage';
 import { OrderDetailPage } from '../pages/OrderDetailPage';
 import { AdminDashboard } from '../pages/AdminDashboard';
+import { AdminOrderDetailPage } from '../pages/AdminOrderDetailPage';
 import { ProtectedRoute } from '../components/ProtectedRoute';
 import { CustomerLayout } from '../layouts/CustomerLayout';
-
+import { AdminLayout } from '../layouts/AdminLayout';
 
 export const AppRouter: React.FC = () => {
   return (
@@ -47,7 +48,6 @@ export const AppRouter: React.FC = () => {
               </ProtectedRoute>
             }
           />
-
           <Route
             path="/orders"
             element={
@@ -70,15 +70,17 @@ export const AppRouter: React.FC = () => {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
 
-        {/* Rutas de Administración */}
+        {/* Rutas de Administración (modo oscuro con Sidebar) */}
         <Route
-          path="/admin"
           element={
             <ProtectedRoute requiredRole="admin">
-              <AdminDashboard />
+              <AdminLayout />
             </ProtectedRoute>
           }
-        />
+        >
+          <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/admin/orders/:id" element={<AdminOrderDetailPage />} />
+        </Route>
 
         {/* Fallback para cualquier ruta no definida */}
         <Route path="*" element={<Navigate to="/" replace />} />
@@ -86,4 +88,5 @@ export const AppRouter: React.FC = () => {
     </BrowserRouter>
   );
 };
+
 

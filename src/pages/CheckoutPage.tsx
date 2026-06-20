@@ -7,7 +7,7 @@ import type { CheckoutData } from '../types';
 
 export const CheckoutPage: React.FC = () => {
   const navigate = useNavigate();
-  const { items, total } = useCartStore();
+  const { items } = useCartStore();
   const { user } = useAuthStore();
 
   // Validar si el carrito está vacío en la carga
