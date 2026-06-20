@@ -8,9 +8,11 @@ import { CheckoutPage } from '../pages/CheckoutPage';
 import { ConfirmOrderPage } from '../pages/ConfirmOrderPage';
 import { SuccessPage } from '../pages/SuccessPage';
 import { OrdersPage } from '../pages/OrdersPage';
+import { OrderDetailPage } from '../pages/OrderDetailPage';
 import { AdminDashboard } from '../pages/AdminDashboard';
 import { ProtectedRoute } from '../components/ProtectedRoute';
 import { CustomerLayout } from '../layouts/CustomerLayout';
+
 
 export const AppRouter: React.FC = () => {
   return (
@@ -51,6 +53,14 @@ export const AppRouter: React.FC = () => {
             element={
               <ProtectedRoute requiredRole="user">
                 <OrdersPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/orders/:id"
+            element={
+              <ProtectedRoute requiredRole="user">
+                <OrderDetailPage />
               </ProtectedRoute>
             }
           />
