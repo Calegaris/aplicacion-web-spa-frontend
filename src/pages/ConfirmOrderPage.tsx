@@ -31,18 +31,7 @@ export const ConfirmOrderPage: React.FC = () => {
     setError('');
 
     try {
-      // 1. Sincronizar el carrito local con el backend.
-      // Primero limpiamos enviando items vacíos? No, el endpoint /api/cart no tiene borrar,
-      // pero el backend limpia el carrito tras crear una orden. Para estar seguros de que no haya basura,
-      // la lógica asume que las peticiones se agregan. Sin embargo, para evitar duplicidades de checkouts previos,
-      // dado que no tenemos DELETE /api/cart, simplemente enviamos los productos.
-      for (const item of items) {
-        for (let i = 0; i < item.quantity; i++) {
-          await apiClient.post('/cart', { productId: item.id });
-        }
-      }
-
-      // 2. Enviar el pedido
+      // Enviar el pedido incluyendo directamente los ítems en el cuerpo de la petición
       const orderResponse = await apiClient.post('/orders', {
         name: checkoutData.name,
         email: checkoutData.email,
@@ -50,6 +39,10 @@ export const ConfirmOrderPage: React.FC = () => {
         deliveryType: checkoutData.deliveryType,
         address: checkoutData.address,
         paymentMethod: checkoutData.paymentMethod,
+        items: items.map(item => ({
+          id: item.id,
+          quantity: item.quantity
+        }))
       });
 
       const order = orderResponse.data;
