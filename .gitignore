@@ -27,3 +27,9 @@ dist-ssr
 FRONTEND-component-spec.md
 FRONTEND-plan.md
 MOCKUPS-burger-house.md
+
+# Playwright E2E
+test-results/
+playwright-report/
+blob-report/
+.order-id.tmp
